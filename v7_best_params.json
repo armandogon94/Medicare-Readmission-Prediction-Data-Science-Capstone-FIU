@@ -1,0 +1,46 @@
+{
+  "lgb": {
+    "boosting_type": "gbdt",
+    "colsample_bytree": 0.30290869700342954,
+    "learning_rate": 0.008717894714512568,
+    "max_depth": 11,
+    "min_child_samples": 48,
+    "min_split_gain": 0.9197013687837151,
+    "n_estimators": 1766,
+    "num_leaves": 271,
+    "reg_alpha": 3.788358228545137e-06,
+    "reg_lambda": 0.0024252368334550887,
+    "subsample": 0.6582414873586023,
+    "subsample_for_bin": 200000,
+    "subsample_freq": 0,
+    "scale_pos_weight": 2.000192399844284
+  },
+  "xgb": {
+    "max_depth": 11,
+    "learning_rate": 0.006898995723929606,
+    "n_estimators": 1240,
+    "subsample": 0.9593553777055241,
+    "colsample_bytree": 0.45887969666659933,
+    "reg_alpha": 8.235671464882395e-05,
+    "reg_lambda": 2.3747668698427505e-06,
+    "min_child_weight": 32,
+    "gamma": 2.142191537051855,
+    "scale_pos_weight": 1.8600388491818678,
+    "grow_policy": "lossguide",
+    "max_bin": 512,
+    "objective": "binary:logistic",
+    "eval_metric": "auc",
+    "random_state": 42,
+    "tree_method": "hist"
+  },
+  "cb": {
+    "depth": 7,
+    "random_strength": 1.41286993,
+    "learning_rate": 0.03156794235,
+    "bootstrap_type": "Bayesian",
+    "bagging_temperature": 0.4483854175,
+    "l2_leaf_reg": 5.372352123,
+    "border_count": 140,
+    "iterations": 1777
+  }
+}

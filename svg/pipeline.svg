@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 920" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title>End-to-end pipeline from raw MIMIC-IV to deployed XGBoost V7</title>
+  <rect width="1240" height="920" fill="#FFFFFF"/>
+  <text x="620" y="32" font-size="20" font-weight="700" text-anchor="middle" fill="#111827">End-to-end pipeline — raw MIMIC-IV v3.1 → deployed XGBoost V7</text>
+
+  <defs>
+    <marker id="arrA" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L10,4 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Stage 1 - Raw data -->
+  <g transform="translate(400,60)">
+    <rect width="440" height="74" rx="10" fill="#F1F5F9" stroke="#475569" stroke-width="1.5"/>
+    <text x="220" y="26" font-size="15" font-weight="700" text-anchor="middle" fill="#0F172A">MIMIC-IV v3.1 · parquet tables</text>
+    <text x="220" y="46" font-size="12" text-anchor="middle" fill="#334155">546,028 admissions · 364,627 patients · 2008 – 2022</text>
+    <text x="220" y="62" font-size="11" text-anchor="middle" fill="#64748B">admissions · patients · diagnoses · prescriptions · labs · icu · drg</text>
+  </g>
+  <line x1="620" y1="134" x2="620" y2="172" stroke="#475569" stroke-width="2" marker-end="url(#arrA)"/>
+  <text x="640" y="158" font-size="11" fill="#475569">filter insurance == 'Medicare'</text>
+
+  <!-- Stage 2 - Medicare cohort -->
+  <g transform="translate(400,178)">
+    <rect width="440" height="74" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="1.5"/>
+    <text x="220" y="26" font-size="15" font-weight="700" text-anchor="middle" fill="#1E3A8A">Medicare cohort · readmit_30d label</text>
+    <text x="220" y="46" font-size="12" text-anchor="middle" fill="#1E40AF">244,576 admissions · 21.1 % positive rate</text>
+    <text x="220" y="62" font-size="11" text-anchor="middle" fill="#3730A3">label computed strictly from pre-discharge timestamps</text>
+  </g>
+  <line x1="620" y1="252" x2="620" y2="290" stroke="#475569" stroke-width="2" marker-end="url(#arrA)"/>
+  <text x="640" y="276" font-size="11" fill="#475569">V1 → V7 feature engineering</text>
+
+  <!-- Stage 3 - V7 features -->
+  <g transform="translate(400,296)">
+    <rect width="440" height="74" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+    <text x="220" y="26" font-size="15" font-weight="700" text-anchor="middle" fill="#78350F">V7 feature matrix · 50 columns</text>
+    <text x="220" y="46" font-size="12" text-anchor="middle" fill="#92400E">demographics · CCI · LOS · meds · labs · ICU · DRG · interactions</text>
+    <text x="220" y="62" font-size="11" text-anchor="middle" fill="#A16207">5 target-encoded categoricals · 5 engineered interactions</text>
+  </g>
+  <line x1="620" y1="370" x2="620" y2="408" stroke="#475569" stroke-width="2" marker-end="url(#arrA)"/>
+  <text x="640" y="394" font-size="11" fill="#475569">GroupShuffleSplit 80 / 20 on subject_id</text>
+
+  <!-- Stage 4 - Split -->
+  <g transform="translate(340,414)">
+    <rect width="240" height="64" rx="10" fill="#E0E7FF" stroke="#4338CA" stroke-width="1.5"/>
+    <text x="120" y="26" font-size="13" font-weight="700" text-anchor="middle" fill="#312E81">Train fold</text>
+    <text x="120" y="46" font-size="12" text-anchor="middle" fill="#4338CA">195,385 admissions</text>
+  </g>
+  <g transform="translate(660,414)">
+    <rect width="240" height="64" rx="10" fill="#E0E7FF" stroke="#4338CA" stroke-width="1.5"/>
+    <text x="120" y="26" font-size="13" font-weight="700" text-anchor="middle" fill="#312E81">Test fold · held out</text>
+    <text x="120" y="46" font-size="12" text-anchor="middle" fill="#4338CA">49,191 admissions</text>
+  </g>
+  <line x1="460" y1="478" x2="460" y2="514" stroke="#475569" stroke-width="2" marker-end="url(#arrA)"/>
+
+  <!-- Stage 5 - Optuna HPO -->
+  <g transform="translate(190,520)">
+    <rect width="540" height="64" rx="10" fill="#FCE7F3" stroke="#BE185D" stroke-width="1.5"/>
+    <text x="270" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#831843">Optuna Bayesian HPO</text>
+    <text x="270" y="46" font-size="12" text-anchor="middle" fill="#9D174D">150 trials × 3 families · TPE sampler · 5-fold patient-grouped CV</text>
+  </g>
+  <line x1="460" y1="584" x2="460" y2="620" stroke="#475569" stroke-width="2" marker-end="url(#arrA)"/>
+
+  <!-- Stage 6 - 4 GBM families -->
+  <g transform="translate(80,626)">
+    <rect width="140" height="62" rx="10" fill="#F3E8FF" stroke="#7E22CE" stroke-width="1.5"/>
+    <text x="70" y="26" font-size="13" font-weight="700" text-anchor="middle" fill="#581C87">LightGBM</text>
+    <text x="70" y="44" font-size="11" text-anchor="middle" fill="#6B21A8">10 seeds · 0.7901</text>
+  </g>
+  <g transform="translate(240,626)">
+    <rect width="140" height="62" rx="10" fill="#F3E8FF" stroke="#7E22CE" stroke-width="1.5"/>
+    <text x="70" y="26" font-size="13" font-weight="700" text-anchor="middle" fill="#581C87">XGBoost</text>
+    <text x="70" y="44" font-size="11" text-anchor="middle" fill="#6B21A8">10 seeds · 0.7931 ★</text>
+  </g>
+  <g transform="translate(400,626)">
+    <rect width="140" height="62" rx="10" fill="#F3E8FF" stroke="#7E22CE" stroke-width="1.5"/>
+    <text x="70" y="26" font-size="13" font-weight="700" text-anchor="middle" fill="#581C87">CatBoost</text>
+    <text x="70" y="44" font-size="11" text-anchor="middle" fill="#6B21A8">10 seeds · 0.7924</text>
+  </g>
+  <g transform="translate(560,626)">
+    <rect width="140" height="62" rx="10" fill="#F3E8FF" stroke="#7E22CE" stroke-width="1.5"/>
+    <text x="70" y="26" font-size="13" font-weight="700" text-anchor="middle" fill="#581C87">HistGBM</text>
+    <text x="70" y="44" font-size="11" text-anchor="middle" fill="#6B21A8">10 seeds · 0.7916</text>
+  </g>
+
+  <!-- Converging arrows from the 4 GBM boxes down to a shared junction at (390, 720) -->
+  <line x1="150" y1="688" x2="390" y2="716" stroke="#475569" stroke-width="1.5"/>
+  <line x1="310" y1="688" x2="390" y2="716" stroke="#475569" stroke-width="1.5"/>
+  <line x1="470" y1="688" x2="390" y2="716" stroke="#475569" stroke-width="1.5"/>
+  <line x1="630" y1="688" x2="390" y2="716" stroke="#475569" stroke-width="1.5"/>
+  <line x1="390" y1="720" x2="390" y2="738" stroke="#475569" stroke-width="2" marker-end="url(#arrA)"/>
+
+  <!-- Scipy blend — widened -->
+  <g transform="translate(40,744)">
+    <rect width="340" height="74" rx="10" fill="#FEE2E2" stroke="#B91C1C" stroke-width="1.5"/>
+    <text x="170" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#7F1D1D">scipy blend · AUROC 0.795</text>
+    <text x="170" y="44" font-size="11" text-anchor="middle" fill="#991B1B">weights: 0.19 LGB · 0.30 XGB · 0.30 CAT · 0.21 HGB</text>
+    <text x="170" y="62" font-size="11" font-style="italic" text-anchor="middle" fill="#991B1B">benchmark ceiling · not deployed</text>
+  </g>
+
+  <!-- Deployed XGBoost — widened -->
+  <g transform="translate(400,744)">
+    <rect width="340" height="74" rx="10" fill="#D1FAE5" stroke="#047857" stroke-width="2"/>
+    <text x="170" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#064E3B">★ XGBoost V7 · DEPLOYED</text>
+    <text x="170" y="44" font-size="12" font-weight="600" text-anchor="middle" fill="#065F46">AUROC 0.793 · AUPRC 0.522 · Brier 0.149</text>
+    <text x="170" y="62" font-size="11" text-anchor="middle" fill="#065F46">0.002 AUROC gap vs blend · ¼ maintenance footprint</text>
+  </g>
+
+  <!-- Right column — SHAP stacked on top, Evaluation below -->
+  <g transform="translate(790,626)">
+    <rect width="410" height="120" rx="10" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+    <text x="205" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#7C2D12">SHAP Interpretability</text>
+    <text x="205" y="50" font-size="11" text-anchor="middle" fill="#9A3412">global top-7 features · patient-level waterfall</text>
+    <text x="205" y="70" font-size="11" text-anchor="middle" fill="#9A3412">SHAP values on held-out test fold</text>
+    <text x="205" y="96" font-size="11" text-anchor="middle" fill="#C2410C">actionable insights for the discharge-team workflow</text>
+    <text x="205" y="112" font-size="11" font-weight="700" text-anchor="middle" fill="#7C2D12">→ answers RQ3</text>
+  </g>
+
+  <g transform="translate(790,762)">
+    <rect width="410" height="120" rx="10" fill="#ECFDF5" stroke="#059669" stroke-width="1.5"/>
+    <text x="205" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#064E3B">Evaluation Artefacts</text>
+    <text x="205" y="50" font-size="11" text-anchor="middle" fill="#065F46">ROC + PR curves · calibration diagram</text>
+    <text x="205" y="70" font-size="11" text-anchor="middle" fill="#065F46">confusion matrix · feature importance</text>
+    <text x="205" y="96" font-size="11" text-anchor="middle" fill="#047857">evaluated exclusively on the 49,191-admission</text>
+    <text x="205" y="112" font-size="11" font-weight="700" text-anchor="middle" fill="#064E3B">held-out test fold</text>
+  </g>
+
+  <!-- Arrows from deployed XGBoost to SHAP + Eval (no crossings) -->
+  <line x1="740" y1="775" x2="790" y2="685" stroke="#EA580C" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrA)"/>
+  <line x1="740" y1="792" x2="790" y2="820" stroke="#059669" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrA)"/>
+  <!-- Arrow from blend → Eval : down-then-right so it doesn't cross the deployed XGBoost box -->
+  <polyline points="210,818 210,850 790,850" fill="none" stroke="#059669" stroke-width="1" stroke-dasharray="3,3" opacity="0.55" marker-end="url(#arrA)"/>
+  <!-- Test-fold dashed line lives on the far-right gutter, never crossing a box -->
+  <line x1="900" y1="478" x2="900" y2="620" stroke="#4338CA" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="912" y="544" font-size="10" fill="#4338CA">held-out · evaluation only</text>
+</svg>

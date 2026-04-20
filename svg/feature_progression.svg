@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 470" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title>Feature engineering progression V1 to V7</title>
+  <rect width="1240" height="470" fill="#FFFFFF"/>
+  <text x="620" y="30" font-size="18" font-weight="700" text-anchor="middle" fill="#111827">Feature engineering — incremental AUROC gains across V1 → V7</text>
+  <text x="620" y="50" font-size="12" text-anchor="middle" fill="#6B7280">Dataset size fixed at 244,576 Medicare admissions · XGBoost test AUROC</text>
+
+  <!-- AUROC gridlines: 0.70 at y=370 · 0.75 at y=310 · 0.80 at y=250 -->
+  <line x1="80" y1="370" x2="1160" y2="370" stroke="#D1D5DB" stroke-width="1"/>
+  <text x="70" y="374" font-size="10" text-anchor="end" fill="#6B7280">0.70</text>
+  <line x1="80" y1="310" x2="1160" y2="310" stroke="#E5E7EB" stroke-dasharray="3,3"/>
+  <text x="70" y="314" font-size="10" text-anchor="end" fill="#6B7280">0.75</text>
+  <line x1="80" y1="250" x2="1160" y2="250" stroke="#E5E7EB" stroke-dasharray="3,3"/>
+  <text x="70" y="254" font-size="10" text-anchor="end" fill="#6B7280">0.80</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#9CA3AF"/>
+    </marker>
+  </defs>
+
+  <!-- Boxes: V1-V6 at y=75-180 (height 105) · V7 at y=65-190 (height 125) -->
+
+  <!-- V1 -->
+  <g transform="translate(80,75)">
+    <rect width="100" height="105" rx="10" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+    <text x="50" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#1E3A8A">V1</text>
+    <text x="50" y="46" font-size="11" font-weight="600" text-anchor="middle" fill="#1F2937">21 feats</text>
+    <text x="50" y="72" font-size="9" text-anchor="middle" fill="#4B5563">demographics</text>
+    <text x="50" y="88" font-size="9" text-anchor="middle" fill="#4B5563">+ 7 CCI flags</text>
+  </g>
+  <circle cx="130" cy="361" r="6" fill="#2563EB" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="130" y="393" font-size="12" font-weight="700" text-anchor="middle" fill="#1E3A8A">0.707</text>
+
+  <line x1="180" y1="127" x2="225" y2="127" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- V2 -->
+  <g transform="translate(230,75)">
+    <rect width="100" height="105" rx="10" fill="#E0E7FF" stroke="#4338CA" stroke-width="1.5"/>
+    <text x="50" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#312E81">V2</text>
+    <text x="50" y="46" font-size="11" font-weight="600" text-anchor="middle" fill="#1F2937">24 feats</text>
+    <text x="50" y="72" font-size="9" text-anchor="middle" fill="#4B5563">+ LOS trend 180d</text>
+    <text x="50" y="88" font-size="9" text-anchor="middle" fill="#4B5563">+ med entropy 90d</text>
+  </g>
+  <circle cx="280" cy="294" r="6" fill="#4338CA" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="280" y="326" font-size="12" font-weight="700" text-anchor="middle" fill="#312E81">0.763</text>
+  <text x="280" y="420" font-size="11" font-weight="600" text-anchor="middle" fill="#059669">+0.056</text>
+  <line x1="130" y1="361" x2="280" y2="294" stroke="#6366F1" stroke-width="2"/>
+
+  <line x1="330" y1="127" x2="375" y2="127" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- V3 -->
+  <g transform="translate(380,75)">
+    <rect width="100" height="105" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="1.5"/>
+    <text x="50" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#4C1D95">V3</text>
+    <text x="50" y="46" font-size="11" font-weight="600" text-anchor="middle" fill="#1F2937">28 feats</text>
+    <text x="50" y="72" font-size="9" text-anchor="middle" fill="#4B5563">+ missingness flags</text>
+    <text x="50" y="88" font-size="9" text-anchor="middle" fill="#4B5563">+ recomputed LOS</text>
+  </g>
+  <circle cx="430" cy="295" r="6" fill="#6D28D9" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="430" y="327" font-size="12" font-weight="700" text-anchor="middle" fill="#4C1D95">0.762</text>
+  <text x="430" y="420" font-size="11" font-weight="600" text-anchor="middle" fill="#6B7280">−0.001</text>
+  <line x1="280" y1="294" x2="430" y2="295" stroke="#8B5CF6" stroke-width="2"/>
+
+  <line x1="480" y1="127" x2="525" y2="127" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- V4 -->
+  <g transform="translate(530,75)">
+    <rect width="100" height="105" rx="10" fill="#FCE7F3" stroke="#BE185D" stroke-width="1.5"/>
+    <text x="50" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#831843">V4</text>
+    <text x="50" y="46" font-size="11" font-weight="600" text-anchor="middle" fill="#1F2937">33 feats</text>
+    <text x="50" y="72" font-size="9" text-anchor="middle" fill="#4B5563">+ age × CCI</text>
+    <text x="50" y="88" font-size="9" text-anchor="middle" fill="#4B5563">+ severity interact.</text>
+  </g>
+  <circle cx="580" cy="294" r="6" fill="#BE185D" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="580" y="326" font-size="12" font-weight="700" text-anchor="middle" fill="#831843">0.763</text>
+  <text x="580" y="420" font-size="11" font-weight="600" text-anchor="middle" fill="#6B7280">+0.001</text>
+  <line x1="430" y1="295" x2="580" y2="294" stroke="#EC4899" stroke-width="2"/>
+
+  <line x1="630" y1="127" x2="675" y2="127" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- V5 -->
+  <g transform="translate(680,75)">
+    <rect width="100" height="105" rx="10" fill="#FFEDD5" stroke="#C2410C" stroke-width="1.5"/>
+    <text x="50" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#7C2D12">V5</text>
+    <text x="50" y="46" font-size="11" font-weight="600" text-anchor="middle" fill="#1F2937">36 feats</text>
+    <text x="50" y="72" font-size="9" text-anchor="middle" fill="#4B5563">+ LOS × age</text>
+    <text x="50" y="88" font-size="9" text-anchor="middle" fill="#4B5563">+ cci² · log LOS</text>
+  </g>
+  <circle cx="730" cy="294" r="6" fill="#C2410C" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="730" y="326" font-size="12" font-weight="700" text-anchor="middle" fill="#7C2D12">0.763</text>
+  <text x="730" y="420" font-size="11" font-weight="600" text-anchor="middle" fill="#6B7280">+0.000</text>
+  <line x1="580" y1="294" x2="730" y2="294" stroke="#F97316" stroke-width="2"/>
+
+  <line x1="780" y1="127" x2="825" y2="127" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- V6 -->
+  <g transform="translate(830,75)">
+    <rect width="100" height="105" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+    <text x="50" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#78350F">V6</text>
+    <text x="50" y="46" font-size="11" font-weight="600" text-anchor="middle" fill="#1F2937">40 feats</text>
+    <text x="50" y="72" font-size="9" text-anchor="middle" fill="#4B5563">+ labs / ICU</text>
+    <text x="50" y="88" font-size="9" text-anchor="middle" fill="#4B5563">+ clinical aggregates</text>
+  </g>
+  <circle cx="880" cy="285" r="6" fill="#B45309" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="880" y="317" font-size="12" font-weight="700" text-anchor="middle" fill="#78350F">0.771</text>
+  <text x="880" y="420" font-size="11" font-weight="600" text-anchor="middle" fill="#059669">+0.008</text>
+  <line x1="730" y1="294" x2="880" y2="285" stroke="#F59E0B" stroke-width="2"/>
+
+  <line x1="930" y1="127" x2="1025" y2="127" stroke="#059669" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="977" y="119" font-size="10" font-weight="600" text-anchor="middle" fill="#059669">deployed</text>
+
+  <!-- V7 (taller box with more internal padding) -->
+  <g transform="translate(1030,65)">
+    <rect width="130" height="125" rx="10" fill="#D1FAE5" stroke="#047857" stroke-width="2"/>
+    <text x="65" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#064E3B">V7 · deployed</text>
+    <text x="65" y="54" font-size="12" font-weight="700" text-anchor="middle" fill="#064E3B">50 features</text>
+    <text x="65" y="84" font-size="10" text-anchor="middle" fill="#4B5563">+ 5 target encodings</text>
+    <text x="65" y="104" font-size="10" text-anchor="middle" fill="#4B5563">+ 5 interactions</text>
+  </g>
+  <circle cx="1095" cy="258" r="7" fill="#047857" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="1095" y="290" font-size="14" font-weight="800" text-anchor="middle" fill="#064E3B">0.793</text>
+  <text x="1095" y="420" font-size="12" font-weight="700" text-anchor="middle" fill="#059669">+0.022</text>
+  <line x1="880" y1="285" x2="1095" y2="258" stroke="#10B981" stroke-width="2.5"/>
+
+  <text x="80" y="440" font-size="11" fill="#6B7280">AUROC</text>
+  <text x="1160" y="440" font-size="10" text-anchor="end" fill="#6B7280">Incremental gain vs. previous version</text>
+</svg>

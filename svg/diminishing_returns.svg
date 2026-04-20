@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title>Diminishing returns — AUROC vs feature count</title>
+  <rect width="1200" height="740" fill="#FFFFFF"/>
+  <text x="600" y="34" font-size="20" font-weight="700" text-anchor="middle" fill="#111827">Diminishing returns — AUROC vs feature count</text>
+  <text x="600" y="56" font-size="12" text-anchor="middle" fill="#6B7280">A core set of 50 features captures 99.4 % of the predictive signal of a 368-feature superset</text>
+
+  <!-- ===== LEFT PANEL — scatter plot ===== -->
+  <!-- Plot area : x 110 → 780 · y 110 → 560 -->
+  <!-- y-scale: y = 560 - (auroc-0.70) * 4090.91 -->
+
+  <!-- Plot frame -->
+  <rect x="110" y="110" width="670" height="450" fill="#FAFAFA" stroke="#E5E7EB"/>
+
+  <!-- Y-axis gridlines and labels · AUROC 0.70-0.81 -->
+  <g font-size="10" fill="#6B7280">
+    <line x1="110" y1="560" x2="780" y2="560" stroke="#374151"/>
+    <text x="100" y="564" text-anchor="end">0.70</text>
+    <line x1="110" y1="478" x2="780" y2="478" stroke="#E5E7EB" stroke-dasharray="3,3"/>
+    <text x="100" y="482" text-anchor="end">0.72</text>
+    <line x1="110" y1="397" x2="780" y2="397" stroke="#E5E7EB" stroke-dasharray="3,3"/>
+    <text x="100" y="401" text-anchor="end">0.74</text>
+    <line x1="110" y1="315" x2="780" y2="315" stroke="#E5E7EB" stroke-dasharray="3,3"/>
+    <text x="100" y="319" text-anchor="end">0.76</text>
+    <line x1="110" y1="233" x2="780" y2="233" stroke="#E5E7EB" stroke-dasharray="3,3"/>
+    <text x="100" y="237" text-anchor="end">0.78</text>
+    <line x1="110" y1="151" x2="780" y2="151" stroke="#E5E7EB" stroke-dasharray="3,3"/>
+    <text x="100" y="155" text-anchor="end">0.80</text>
+  </g>
+  <text x="45" y="340" font-size="12" font-weight="600" fill="#374151" transform="rotate(-90, 45, 340)">Test AUROC</text>
+
+  <!-- X-axis (log scale of feature count) -->
+  <g font-size="10" fill="#6B7280">
+    <line x1="121.3" y1="560" x2="121.3" y2="566" stroke="#6B7280"/><text x="121.3" y="582" text-anchor="middle">21</text>
+    <line x1="222.9" y1="560" x2="222.9" y2="566" stroke="#6B7280"/><text x="222.9" y="582" text-anchor="middle">33</text>
+    <line x1="315.7" y1="560" x2="315.7" y2="566" stroke="#6B7280"/><text x="315.7" y="582" text-anchor="middle">50</text>
+    <line x1="477.8" y1="560" x2="477.8" y2="566" stroke="#6B7280"/><text x="477.8" y="582" text-anchor="middle">100</text>
+    <line x1="597.2" y1="560" x2="597.2" y2="566" stroke="#6B7280"/><text x="597.2" y="582" text-anchor="middle">200</text>
+    <line x1="762.5" y1="560" x2="762.5" y2="566" stroke="#6B7280"/><text x="762.5" y="582" text-anchor="middle">368</text>
+  </g>
+  <text x="445" y="605" font-size="12" font-weight="600" text-anchor="middle" fill="#374151">Feature count (log scale)</text>
+
+  <!-- Connecting line — V1 → V7 (now aligned with actual dot y-coordinates) -->
+  <polyline points="121.3,531.4 151.3,302.3 185.8,306.4 222.9,302.3 242.0,302.3 265.7,269.6 315.7,179.6"
+            fill="none" stroke="#3B82F6" stroke-width="2.5"/>
+
+  <!-- Dashed segment V7 → Expansion — line ends at the Expansion dot, not at the label -->
+  <line x1="315.7" y1="179.6" x2="762.5" y2="151.1" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="6,4"/>
+
+  <!-- V1 (21, 0.707) · labels moved to the right of the dot to avoid the blue line -->
+  <circle cx="121.3" cy="531.4" r="7" fill="#2563EB" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="136" y="528" font-size="11" font-weight="700" text-anchor="start" fill="#1E3A8A">V1</text>
+  <text x="136" y="542" font-size="10" text-anchor="start" fill="#1E3A8A">0.707</text>
+
+  <!-- V2 (24, 0.763) -->
+  <circle cx="151.3" cy="302.3" r="7" fill="#4338CA" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="135" y="290" font-size="11" font-weight="700" text-anchor="end" fill="#312E81">V2</text>
+  <text x="135" y="304" font-size="10" text-anchor="end" fill="#312E81">0.763</text>
+
+  <!-- V3 (28, 0.762) -->
+  <circle cx="185.8" cy="306.4" r="7" fill="#6D28D9" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="185.8" y="328" font-size="11" font-weight="700" text-anchor="middle" fill="#4C1D95">V3</text>
+  <text x="185.8" y="342" font-size="10" text-anchor="middle" fill="#4C1D95">0.762</text>
+
+  <!-- V4 (33, 0.763) -->
+  <circle cx="222.9" cy="302.3" r="7" fill="#BE185D" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="222.9" y="328" font-size="11" font-weight="700" text-anchor="middle" fill="#831843">V4</text>
+  <text x="222.9" y="342" font-size="10" text-anchor="middle" fill="#831843">0.763</text>
+
+  <!-- V5 (36, 0.763) -->
+  <circle cx="242.0" cy="302.3" r="7" fill="#C2410C" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="254" y="290" font-size="11" font-weight="700" text-anchor="start" fill="#7C2D12">V5</text>
+  <text x="254" y="304" font-size="10" text-anchor="start" fill="#7C2D12">0.763</text>
+
+  <!-- V6 (40, 0.771) -->
+  <circle cx="265.7" cy="269.6" r="7" fill="#B45309" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="278" y="256" font-size="11" font-weight="700" text-anchor="start" fill="#78350F">V6</text>
+  <text x="278" y="270" font-size="10" text-anchor="start" fill="#78350F">0.771</text>
+
+  <!-- V7 (50, 0.793) — highlighted -->
+  <circle cx="315.7" cy="179.6" r="9" fill="#047857" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="315.7" y="163" font-size="12" font-weight="800" text-anchor="middle" fill="#064E3B">V7 · 50 feats</text>
+  <text x="315.7" y="149" font-size="11" font-weight="700" text-anchor="middle" fill="#064E3B">0.793</text>
+
+  <!-- Expansion point (368, 0.800) · dot + label box positioned BELOW the dot so the dashed line terminates on the dot -->
+  <circle cx="762.5" cy="151.1" r="8" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+  <g transform="translate(702,170)">
+    <rect width="120" height="34" rx="6" fill="#FEF2F2" stroke="#DC2626"/>
+    <text x="60" y="14" font-size="11" font-weight="700" text-anchor="middle" fill="#7F1D1D">Feature Expansion</text>
+    <text x="60" y="28" font-size="10" text-anchor="middle" fill="#7F1D1D">368 feats · 0.800</text>
+  </g>
+
+  <!-- Delta annotation between V7 and Expansion -->
+  <g transform="translate(450,240)">
+    <rect width="180" height="50" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="90" y="18" font-size="11" font-weight="700" text-anchor="middle" fill="#111827">V7 → Expansion</text>
+    <text x="90" y="34" font-size="10" text-anchor="middle" fill="#6B7280">+0.005 AUROC · +318 features</text>
+    <text x="90" y="46" font-size="10" font-weight="600" text-anchor="middle" fill="#DC2626">marginal return</text>
+  </g>
+
+  <!-- Delta annotation between V1 and V7 -->
+  <g transform="translate(125,410)">
+    <rect width="180" height="50" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="90" y="18" font-size="11" font-weight="700" text-anchor="middle" fill="#111827">V1 → V7</text>
+    <text x="90" y="34" font-size="10" text-anchor="middle" fill="#6B7280">+0.086 AUROC · +29 features</text>
+    <text x="90" y="46" font-size="10" font-weight="600" text-anchor="middle" fill="#059669">core clinical signal</text>
+  </g>
+
+  <!-- ===== RIGHT PANEL — version cards stacked top-to-bottom ===== -->
+  <text x="995" y="88" font-size="13" font-weight="700" text-anchor="middle" fill="#111827">Per-version detail</text>
+
+  <!-- V1 -->
+  <g transform="translate(830,98)">
+    <rect width="330" height="68" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+    <text x="14" y="20" font-size="13" font-weight="800" fill="#1E3A8A">V1</text>
+    <text x="48" y="20" font-size="11" font-weight="600" fill="#1F2937">21 features · baseline</text>
+    <text x="14" y="38" font-size="10" fill="#4B5563">demographics · 7 CCI flags · LOS · meds · prior use · DRG</text>
+    <text x="316" y="58" font-size="14" font-weight="800" text-anchor="end" fill="#1E3A8A">AUROC 0.707</text>
+  </g>
+
+  <!-- V2 -->
+  <g transform="translate(830,174)">
+    <rect width="330" height="68" rx="8" fill="#E0E7FF" stroke="#4338CA" stroke-width="1.5"/>
+    <text x="14" y="20" font-size="13" font-weight="800" fill="#312E81">V2</text>
+    <text x="48" y="20" font-size="11" font-weight="600" fill="#1F2937">24 feats · + temporal + medication complexity</text>
+    <text x="14" y="38" font-size="10" fill="#4B5563">+ last DRG × dispo · med entropy 90d · LOS trend 180d</text>
+    <text x="316" y="58" font-size="14" font-weight="800" text-anchor="end" fill="#312E81">AUROC 0.763  +0.056</text>
+  </g>
+
+  <!-- V3 -->
+  <g transform="translate(830,250)">
+    <rect width="330" height="68" rx="8" fill="#EDE9FE" stroke="#6D28D9" stroke-width="1.5"/>
+    <text x="14" y="20" font-size="13" font-weight="800" fill="#4C1D95">V3</text>
+    <text x="48" y="20" font-size="11" font-weight="600" fill="#1F2937">28 feats · + data-quality signals</text>
+    <text x="14" y="38" font-size="10" fill="#4B5563">+ missingness flags · recomputed LOS</text>
+    <text x="316" y="58" font-size="14" font-weight="800" text-anchor="end" fill="#4C1D95">AUROC 0.762  −0.001</text>
+  </g>
+
+  <!-- V4 -->
+  <g transform="translate(830,326)">
+    <rect width="330" height="68" rx="8" fill="#FCE7F3" stroke="#BE185D" stroke-width="1.5"/>
+    <text x="14" y="20" font-size="13" font-weight="800" fill="#831843">V4</text>
+    <text x="48" y="20" font-size="11" font-weight="600" fill="#1F2937">33 feats · + severity interactions</text>
+    <text x="14" y="38" font-size="10" fill="#4B5563">+ age buckets · cci_total · age×CCI · LOS×CCI</text>
+    <text x="316" y="58" font-size="14" font-weight="800" text-anchor="end" fill="#831843">AUROC 0.763  +0.001</text>
+  </g>
+
+  <!-- V5 -->
+  <g transform="translate(830,402)">
+    <rect width="330" height="68" rx="8" fill="#FFEDD5" stroke="#C2410C" stroke-width="1.5"/>
+    <text x="14" y="20" font-size="13" font-weight="800" fill="#7C2D12">V5</text>
+    <text x="48" y="20" font-size="11" font-weight="600" fill="#1F2937">36 feats · + nonlinear transforms</text>
+    <text x="14" y="38" font-size="10" fill="#4B5563">+ LOS × age · cci² · log1p(LOS)</text>
+    <text x="316" y="58" font-size="14" font-weight="800" text-anchor="end" fill="#7C2D12">AUROC 0.763  +0.000</text>
+  </g>
+
+  <!-- V6 -->
+  <g transform="translate(830,478)">
+    <rect width="330" height="68" rx="8" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+    <text x="14" y="20" font-size="13" font-weight="800" fill="#78350F">V6</text>
+    <text x="48" y="20" font-size="11" font-weight="600" fill="#1F2937">40 feats · + clinical aggregates</text>
+    <text x="14" y="38" font-size="10" fill="#4B5563">+ n_diagnoses · labs · procedures · ICU · prior utilisation</text>
+    <text x="316" y="58" font-size="14" font-weight="800" text-anchor="end" fill="#78350F">AUROC 0.771  +0.008</text>
+  </g>
+
+  <!-- V7 · deployed · highlighted -->
+  <g transform="translate(830,554)">
+    <rect width="330" height="72" rx="8" fill="#D1FAE5" stroke="#047857" stroke-width="2.5"/>
+    <text x="14" y="20" font-size="13" font-weight="800" fill="#064E3B">V7 ★ DEPLOYED</text>
+    <text x="122" y="20" font-size="11" font-weight="600" fill="#065F46">50 feats · parsimonious</text>
+    <text x="14" y="38" font-size="10" fill="#065F46">+ 5 target encodings · 5 clinical interactions</text>
+    <text x="316" y="60" font-size="14" font-weight="800" text-anchor="end" fill="#064E3B">AUROC 0.793  +0.022</text>
+  </g>
+
+  <!-- Expansion -->
+  <g transform="translate(830,634)">
+    <rect width="330" height="66" rx="8" fill="#FEF2F2" stroke="#DC2626" stroke-width="1.5"/>
+    <text x="14" y="20" font-size="13" font-weight="800" fill="#7F1D1D">Expansion</text>
+    <text x="118" y="20" font-size="11" font-weight="600" fill="#1F2937">368 feats · unpruned superset</text>
+    <text x="14" y="38" font-size="10" fill="#991B1B">pairwise interactions · extended encodings · 7× more features</text>
+    <text x="316" y="58" font-size="14" font-weight="800" text-anchor="end" fill="#7F1D1D">AUROC 0.800  +0.005</text>
+  </g>
+
+  <!-- Stopping rule — moved up to align with the Expansion card, text centered, padding on all sides -->
+  <g transform="translate(110,634)">
+    <rect width="710" height="90" rx="8" fill="#ECFDF5" stroke="#059669"/>
+    <text x="355" y="24" font-size="13" font-weight="700" text-anchor="middle" fill="#065F46">Stopping rule</text>
+    <text x="355" y="46" font-size="11" text-anchor="middle" fill="#064E3B">The +0.005 AUROC gained by the 368-feature superset over V7 is less</text>
+    <text x="355" y="62" font-size="11" text-anchor="middle" fill="#064E3B">than the stability spread of the V7 ensemble (±0.003).</text>
+    <text x="355" y="80" font-size="11" font-weight="600" text-anchor="middle" fill="#047857">→ V7 captures 99.4 % of available predictive signal with 14 % of the features.</text>
+  </g>
+</svg>

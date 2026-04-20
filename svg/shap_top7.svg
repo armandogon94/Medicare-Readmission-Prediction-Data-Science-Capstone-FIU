@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title>Top-7 SHAP features for XGBoost V7</title>
+  <rect width="1200" height="560" fill="#FFFFFF"/>
+  <text x="600" y="32" font-size="18" font-weight="700" text-anchor="middle" fill="#111827">SHAP global importance — top 7 predictors in XGBoost V7</text>
+  <text x="600" y="52" font-size="12" text-anchor="middle" fill="#6B7280">Mean |SHAP value| across 49,191 held-out admissions · bar colored by clinical category</text>
+
+  <!-- Axis (0 → 0.045 mapped to x 380 → 980) · scale: x = 380 + shap * 13333.33 -->
+  <line x1="380" y1="490" x2="980" y2="490" stroke="#374151" stroke-width="1"/>
+  <g font-size="11" fill="#6B7280">
+    <line x1="380" y1="490" x2="380" y2="496" stroke="#6B7280"/><text x="380" y="512" text-anchor="middle">0.000</text>
+    <line x1="513.33" y1="490" x2="513.33" y2="496" stroke="#6B7280"/><text x="513.33" y="512" text-anchor="middle">0.010</text>
+    <line x1="646.67" y1="490" x2="646.67" y2="496" stroke="#6B7280"/><text x="646.67" y="512" text-anchor="middle">0.020</text>
+    <line x1="780" y1="490" x2="780" y2="496" stroke="#6B7280"/><text x="780" y="512" text-anchor="middle">0.030</text>
+    <line x1="913.33" y1="490" x2="913.33" y2="496" stroke="#6B7280"/><text x="913.33" y="512" text-anchor="middle">0.040</text>
+  </g>
+  <text x="680" y="536" font-size="12" font-weight="600" text-anchor="middle" fill="#374151">mean |SHAP value|</text>
+
+  <!-- Row spacing 55 · rows at y = 85, 140, 195, 250, 305, 360, 415 · last bar ends at y=455 (35 px above axis) -->
+
+  <!-- 1 : los_trend_180d — 0.042 · trajectory (bar wide enough for inline text) -->
+  <g transform="translate(0,85)">
+    <text x="370" y="28" font-size="13" font-weight="700" text-anchor="end" fill="#111827">los_trend_180d</text>
+    <rect x="380" y="10" width="560" height="40" fill="#DC2626" rx="4"/>
+    <text x="394" y="35" font-size="11" fill="#FFFFFF" font-style="italic">trajectory · rising stay length → decompensation</text>
+    <text x="950" y="35" font-size="13" font-weight="700" fill="#111827">0.042</text>
+  </g>
+
+  <!-- 2 : drg_code — 0.030 · complexity (bar wide enough for inline text) -->
+  <g transform="translate(0,140)">
+    <text x="370" y="28" font-size="13" font-weight="700" text-anchor="end" fill="#111827">drg_code (target-encoded)</text>
+    <rect x="380" y="10" width="400" height="40" fill="#EA580C" rx="4"/>
+    <text x="394" y="35" font-size="11" fill="#FFFFFF" font-style="italic">admission reason + CMS complexity weight</text>
+    <text x="790" y="35" font-size="13" font-weight="700" fill="#111827">0.030</text>
+  </g>
+
+  <!-- 3 : late_order_rate — 0.013 (narrow · description to the right of the score) -->
+  <g transform="translate(0,195)">
+    <text x="370" y="28" font-size="13" font-weight="700" text-anchor="end" fill="#111827">late_order_rate</text>
+    <rect x="380" y="10" width="173.33" height="40" fill="#7C3AED" rx="4"/>
+    <text x="563" y="35" font-size="13" font-weight="700" fill="#111827">0.013</text>
+    <text x="608" y="35" font-size="11" fill="#6B7280" font-style="italic">operational chaos during stay</text>
+  </g>
+
+  <!-- 4 : primary_dx_chapter_te — 0.011 -->
+  <g transform="translate(0,250)">
+    <text x="370" y="28" font-size="13" font-weight="700" text-anchor="end" fill="#111827">primary_dx_chapter_te</text>
+    <rect x="380" y="10" width="146.67" height="40" fill="#2563EB" rx="4"/>
+    <text x="537" y="35" font-size="13" font-weight="700" fill="#111827">0.011</text>
+    <text x="582" y="35" font-size="11" fill="#6B7280" font-style="italic">disease category</text>
+  </g>
+
+  <!-- 5 : prior_admits_6m² — 0.011 -->
+  <g transform="translate(0,305)">
+    <text x="370" y="28" font-size="13" font-weight="700" text-anchor="end" fill="#111827">prior_admits_6m²</text>
+    <rect x="380" y="10" width="146.67" height="40" fill="#DB2777" rx="4"/>
+    <text x="537" y="35" font-size="13" font-weight="700" fill="#111827">0.011</text>
+    <text x="582" y="35" font-size="11" fill="#6B7280" font-style="italic">nonlinear utilization dose-response</text>
+  </g>
+
+  <!-- 6 : last_drg_dispo — 0.011 -->
+  <g transform="translate(0,360)">
+    <text x="370" y="28" font-size="13" font-weight="700" text-anchor="end" fill="#111827">last_drg_dispo (target-encoded)</text>
+    <rect x="380" y="10" width="146.67" height="40" fill="#EA580C" rx="4"/>
+    <text x="537" y="35" font-size="13" font-weight="700" fill="#111827">0.011</text>
+    <text x="582" y="35" font-size="11" fill="#6B7280" font-style="italic">prior discharge pathway</text>
+  </g>
+
+  <!-- 7 : discharge_location_te — 0.009 -->
+  <g transform="translate(0,415)">
+    <text x="370" y="28" font-size="13" font-weight="700" text-anchor="end" fill="#111827">discharge_location_te</text>
+    <rect x="380" y="10" width="120" height="40" fill="#059669" rx="4"/>
+    <text x="510" y="35" font-size="13" font-weight="700" fill="#111827">0.009</text>
+    <text x="555" y="35" font-size="11" fill="#6B7280" font-style="italic">most actionable lever at discharge</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(40,85)" font-size="10" fill="#374151">
+    <text x="0" y="0" font-size="11" font-weight="700" fill="#111827">Clinical category</text>
+    <g transform="translate(0,16)"><rect width="10" height="10" fill="#DC2626" rx="2"/><text x="16" y="9">trajectory</text></g>
+    <g transform="translate(0,34)"><rect width="10" height="10" fill="#EA580C" rx="2"/><text x="16" y="9">coding / history</text></g>
+    <g transform="translate(0,52)"><rect width="10" height="10" fill="#7C3AED" rx="2"/><text x="16" y="9">operational</text></g>
+    <g transform="translate(0,70)"><rect width="10" height="10" fill="#2563EB" rx="2"/><text x="16" y="9">disease category</text></g>
+    <g transform="translate(0,88)"><rect width="10" height="10" fill="#DB2777" rx="2"/><text x="16" y="9">utilization</text></g>
+    <g transform="translate(0,106)"><rect width="10" height="10" fill="#059669" rx="2"/><text x="16" y="9">actionable lever</text></g>
+  </g>
+
+  <!-- Callout for LOS trend dominance -->
+  <g transform="translate(995,100)">
+    <rect x="-5" y="-5" width="130" height="40" fill="#FEF2F2" stroke="#DC2626" stroke-width="1" rx="6"/>
+    <text x="60" y="12" font-size="10" font-weight="700" text-anchor="middle" fill="#991B1B">strongest predictor</text>
+    <text x="60" y="25" font-size="10" text-anchor="middle" fill="#991B1B">3 × the mean |SHAP|</text>
+  </g>
+</svg>

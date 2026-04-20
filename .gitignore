@@ -1,0 +1,10 @@
+# MIMIC-IV data is released under the PhysioNet Credentialed Health Data
+# License and cannot be redistributed. Contributors populate this folder
+# locally after completing the credentialing workflow (see README).
+Dataset/
+
+# Claude Code session state — local to this machine only.
+.claude/
+
+# macOS Finder metadata.
+.DS_Store
