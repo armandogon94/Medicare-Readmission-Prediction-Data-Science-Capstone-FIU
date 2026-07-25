@@ -1,10 +1,31 @@
-# MIMIC-IV data is released under the PhysioNet Credentialed Health Data
-# License and cannot be redistributed. Contributors populate this folder
-# locally after completing the credentialing workflow (see README).
-Dataset/
 
+# --- MIMIC-IV / restricted health data -------------------------------------
+# --- model artifacts & run outputs ------------------------------------------
+# --- notebook noise ----------------------------------------------------------
+# --- python ------------------------------------------------------------------
 # Claude Code session state — local to this machine only.
-.claude/
-
+# Health Data Use Agreement and may not be redistributed. See DATA.md.
+# License and cannot be redistributed. Contributors populate this folder
+# MIMIC-IV data is released under the PhysioNet Credentialed Health Data
+# Never commit MIMIC-derived data. It is governed by the PhysioNet Credentialed
+# locally after completing the credentialing workflow (see README).
 # macOS Finder metadata.
+*.cbm
+*.joblib
+*.npz
+*.parquet
+*.pkl
+*.py[cod]
+*.ubj
 .DS_Store
+.claude/
+.env
+.ipynb_checkpoints/
+.venv/
+Dataset/
+__pycache__/
+catboost_info/
+runs/
+training_table_*.parquet
+v7_split.npz
+venv/
